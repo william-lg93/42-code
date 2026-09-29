@@ -1,0 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   atoiexam.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wineto-m <wineto-m@learner.42.tech>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/24 21:25:58 by wineto-m          #+#    #+#             */
+/*   Updated: 2026/03/24 22:14:09 by wineto-m         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int	atoiex(char *str)
+{
+	int	i;
+	int	resulta;
+	int	sign;
+
+	sign = 1;
+	resulta = 0;
+	i = 0;
+	//ici nous regardions si dans notre chaine il y a des espace ,tabulation,saut de lign ect... et nous les inorons.
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	//ici nous regardions si dans notre chaine il y a une valeur qui definie est negtive ou positif.
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = sign * -1; //changer la valeur de signe a voir plus tard.
+		i++;
+	}
+	// verifier si la valeur qu'on aura sera decimal
+	while(str[i] >= '0' && str[i] <= '9')
+	{
+		// cette formul permet de lire chacune des valeur decimal une part une en ce servant de la table ascii
+		resulta = resulta * 10 + (str[i] - '0');
+			i++;
+	}
+	// quand nous avon notre valeur il nous manque plus qu'a le changer en fonction de signe puis de la retourner.
+	return (resulta * sign);
+}
+
+int	main(void)
+{
+	printf("%d\n", atoiex("\n     -123587"));
+	printf("%d", atoi("\n     -123587"));
+}
